@@ -19,11 +19,11 @@ pipeline {
         }
         stage('Generate Allure Report') {
             steps {
-            bat "'npm allure generate allure-results"   
+            sh "npm allure generate allure-results"   
             }
             post {
               always {
-            bat "npm allure open"
+            sh "npm allure open"
         }
             }
         }
