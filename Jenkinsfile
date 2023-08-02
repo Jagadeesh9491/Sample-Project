@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    options {
+        copyArtifactPermission('*');
+        timeout(time: 3, unit: 'MINUTES')
+    }
     stages {
         stage('Install Dependencies') {
             // Use the script block to run platform-specific commands
