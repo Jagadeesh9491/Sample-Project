@@ -2,9 +2,14 @@ pipeline {
     agent any
     stages {
         stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
-            }
+            // Use the script block to run platform-specific commands
+                script {
+                    // Check if the current agent is running on Windows
+                    if (isUnix()) {
+                        sh 'npm install'
+                    } else {
+                        bat 'npm install'
+                    }
         }
         stage('Run Tests') {
             steps {
