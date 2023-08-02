@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "dom",
+            "es7"
+        ],
+        "target": "es2019",
+        "module": "commonjs",
+        "noImplicitAny": false,
+        "noImplicitReturns": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,              
+        "baseUrl": ".",
+        "paths": {
+                "*": [ "./*" ],
+                "pageObjects/*": ["pageObjects/*"],
+                "test/specs/*": ["./test/specs/*"],
+        },
+        "types": ["@wdio/mocha-framework", "node", "chai", "webdriverio/async","expect-webdriverio"]
+    },    
+    "include": [
+        "./**/test/specs/**/*.ts","shared-utilities/OKTA/PageObjects/logInPageLocators.ts"
+    ],
+    "exclude": [
+      "./node_modules"
+    ],
+    "compileOnSave": false
+  }
