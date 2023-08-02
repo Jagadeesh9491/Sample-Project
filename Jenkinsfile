@@ -4,10 +4,6 @@ pipeline {
         copyArtifactPermission('*');
         timeout(time: 3, unit: 'MINUTES')
     }
-     environment {
-        NODEJS_HOME = tool name: 'NodeJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
-        PATH = "${NODEJS_HOME}/bin:${env.PATH}"
-    }
     stages {
         stage('Install Dependencies') {
             // Use the script block to run platform-specific commands
@@ -22,11 +18,11 @@ pipeline {
         }
         stage('Generate Allure Report') {
             steps {
-            bat "\"${NODEJS_HOME}/bin/allure\" generate ${WORKSPACE}/allure-results"
+            bat "npx allure generate ${env.WORKSPACE}/allure-results:${APP_PATH}/allure-results"
             }
             post {
               always {
-            bat "\"${NODEJS_HOME}/bin/allure\" open ${WORKSPACE}"
+            bat "npx allure open ${env.WORKSPACE}/allure-results:${APP_PATH}/allure-results"
         }
             }
         }
