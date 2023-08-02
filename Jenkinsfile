@@ -17,12 +17,7 @@ pipeline {
                 bat 'npx wdio wdio.conf.ts'
             }
         }
-        stage('Generate Allure Report') {
-            steps {
-            bat "npm run report"   
-            }
-            
-        }
+       
     }
 }
 
