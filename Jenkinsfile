@@ -6,12 +6,9 @@ pipeline {
                 steps {
                       script {
                     try {
-                        // Use sh on Unix and bat on Windows
-                        if (isUnix()) {
-                            sh 'npm install'
-                        } else {
+                 
                             bat 'npm install'
-                        }
+                      
                     } catch (Exception e) {
                         echo "Error installing dependencies: ${e.getMessage()}"
                         currentBuild.result = 'FAILURE'
