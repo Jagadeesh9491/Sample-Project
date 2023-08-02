@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Generate Allure Report') {
             steps {
-            bat "'npm allure generate allure-results"   
+            bat "'npx allure generate allure-results"   
             }
             post {
               always {
