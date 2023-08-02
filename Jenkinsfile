@@ -9,16 +9,16 @@ pipeline {
         }
         stage('Run Tests') {
             steps {
-                sh 'npx wdio wdio.conf.ts'
+                bat 'npx wdio wdio.conf.ts'
             }
         }
         stage('Generate Allure Report') {
             steps {
-                sh 'npx allure generate allure-results --clean'
+                bat 'npx allure generate allure-results --clean'
             }
             post {
                 always {
-                    sh 'npx allure open'
+                    bat 'npx allure open'
                 }
             }
         }
