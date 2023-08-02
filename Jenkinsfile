@@ -3,13 +3,21 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             // Use the script block to run platform-specific commands
-                script {
-                    // Check if the current agent is running on Windows
-                    if (isUnix()) {
-                        sh 'npm install'
-                    } else {
-                        bat 'npm install'
+                steps {
+                      script {
+                    try {
+                        // Use sh on Unix and bat on Windows
+                        if (isUnix()) {
+                            sh 'npm install'
+                        } else {
+                            bat 'npm install'
+                        }
+                    } catch (Exception e) {
+                        echo "Error installing dependencies: ${e.getMessage()}"
+                        currentBuild.result = 'FAILURE'
                     }
+                }
+                   
         }
         stage('Run Tests') {
             steps {
