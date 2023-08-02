@@ -21,9 +21,14 @@ pipeline {
                 bat 'npx allure generate allure-results'
             }
             post {
-                always {
-                    bat 'npx allure open'
-                }
+              always {
+            archiveArtifacts artifacts: 'allure-results/**'
+            allure includeProperties: false, jdk: '', properties: [], reportBuildPolicy: 'ALWAYS', results: [
+                [path: '${env.WORKSPACE}/allure-results']
+            ]
+            sh "sudo chown -R jenkins: ${env.WORKSPACE}"
+            cleanWs()
+        }
             }
         }
     }
