@@ -3,14 +3,9 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             // Use the script block to run platform-specific commands
-                steps {
-                      script {
-                 
-                            bat 'npm install'
-                      
-       
-            
-                   
+               steps {
+                bat 'npm install'
+            }
         }
         stage('Run Tests') {
             steps {
