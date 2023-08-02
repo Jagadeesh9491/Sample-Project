@@ -18,11 +18,11 @@ pipeline {
         }
         stage('Generate Allure Report') {
             steps {
-                bat 'npx allure generate allure-results'
+                bat "\"npx\" allure generate ${WORKSPACE}/allure-results"
             }
             post {
               always {
-            bat 'npx allure open'
+            bat "\"npx\" allure open ${WORKSPACE}"
         }
             }
         }
