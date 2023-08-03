@@ -27,8 +27,11 @@ class LoginPage extends Page {
      */
     public async login (username: string, password: string) {
         await this.inputUsername.setValue(username);
+        console.log('user name entered');
         await this.inputPassword.setValue(password);
+        console.log('password entered');
         await this.btnSubmit.click();
+        console.log('submit button clicked');
     }
 
     /**
